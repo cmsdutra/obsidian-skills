@@ -1,6 +1,8 @@
 # Callouts Reference
 
-## Basic Callout
+Use callouts for highlighted or semantically distinct content. A callout is a Markdown blockquote whose first line starts with `[!type]`.
+
+## Basic Syntax
 
 ```markdown
 > [!note]
@@ -12,6 +14,12 @@
 > [!tip] Title Only
 ```
 
+Rules:
+
+- The type goes inside `[!type]`.
+- A title can follow the closing bracket on the same line.
+- Callout body lines stay inside the blockquote with `>`.
+
 ## Foldable Callouts
 
 ```markdown
@@ -21,6 +29,8 @@
 > [!faq]+ Expanded by default
 > This content is visible but can be collapsed.
 ```
+
+Use `-` after the type marker for collapsed by default and `+` for expanded by default.
 
 ## Nested Callouts
 
@@ -56,3 +66,7 @@
   --callout-icon: lucide-alert-circle;
 }
 ```
+
+## Canonical Docs
+
+- [Obsidian Callouts](https://help.obsidian.md/callouts)

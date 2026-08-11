@@ -1,0 +1,4 @@
+interface:
+  display_name: "Defuddle"
+  short_description: "Extract clean markdown from webpages"
+  default_prompt: "Use $defuddle to extract clean markdown from this webpage URL."

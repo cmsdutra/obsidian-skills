@@ -1,0 +1,4 @@
+interface:
+  display_name: "Obsidian Plugin Creator"
+  short_description: "Build, debug, and validate Obsidian plugins"
+  default_prompt: "Use $obsidian-plugin-creator to clarify, plan, implement, debug, and validate an Obsidian plugin."

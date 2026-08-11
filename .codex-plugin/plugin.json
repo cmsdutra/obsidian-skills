@@ -1,0 +1,38 @@
+{
+  "name": "obsidian-skills",
+  "version": "0.1.0",
+  "description": "Caio Dutra's Codex plugin fork of kepano/obsidian-skills for working with Obsidian Markdown, Bases, Canvas, CLI workflows, snippets, plugins, and web extraction.",
+  "author": {
+    "name": "Caio Dutra",
+    "url": "https://github.com/cmsdutra"
+  },
+  "homepage": "https://github.com/cmsdutra/obsidian-skills",
+  "repository": "https://github.com/cmsdutra/obsidian-skills",
+  "license": "MIT",
+  "keywords": [
+    "obsidian",
+    "skills",
+    "markdown",
+    "canvas",
+    "notes"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Obsidian Skills",
+    "shortDescription": "Skills for Obsidian notes, bases, canvas, snippets, plugins, and CLI workflows.",
+    "longDescription": "Caio Dutra's Codex plugin fork of kepano/obsidian-skills, providing skills for creating, editing, validating, and automating Obsidian vault content and plugin development workflows.",
+    "developerName": "Caio Dutra (@cmsdutra)",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/cmsdutra/obsidian-skills",
+    "defaultPrompt": [
+      "Create an Obsidian note with callouts and properties.",
+      "Validate and edit an Obsidian Canvas file.",
+      "Help build an Obsidian plugin."
+    ],
+    "brandColor": "#7C3AED"
+  }
+}

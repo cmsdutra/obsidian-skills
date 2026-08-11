@@ -1,0 +1,4 @@
+interface:
+  display_name: "Obsidian Bases"
+  short_description: "Create a base file ou code block for Obsidian"
+  default_prompt: "Use $obsidian-bases to create or edit an .base file or a inline Markdown base code block"

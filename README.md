@@ -1,26 +1,36 @@
-Agent Skills for use with Obsidian.
+# Obsidian Skills for Codex
+
+Agent Skills for use with Obsidian, packaged as a Codex plugin.
+
+This repository is Caio Dutra's fork of [`kepano/obsidian-skills`](https://github.com/kepano/obsidian-skills.git). The upstream project provides Obsidian-focused Agent Skills for multiple skills-compatible agents; this fork adapts that work for local Codex plugin usage.
 
 These skills follow the [Agent Skills specification](https://agentskills.io/specification) so they can be used by any skills-compatible agent, including Claude Code, Codex, and Open Code.
 
 ## Installation
 
-### Marketplace
+### Codex Plugin
+
+This fork includes a Codex plugin manifest at `.codex-plugin/plugin.json` and exposes the skills in `skills/`.
+
+### Original Marketplace
 
 ```
 /plugin marketplace add kepano/obsidian-skills
 /plugin install obsidian@obsidian-skills
 ```
 
+These commands refer to the original upstream marketplace package.
+
 ### npx skills
 
 ```
-npx skills add git@github.com:kepano/obsidian-skills.git
+npx skills add git@github.com:cmsdutra/obsidian-skills.git
 ```
 
 Instead of ssh, if you prefer to use https:
 
 ```
-npx skills add https://github.com/kepano/obsidian-skills
+npx skills add https://github.com/cmsdutra/obsidian-skills
 ```
 
 ### Manually
@@ -35,10 +45,10 @@ Copy the `skills/` directory into your Codex skills path (typically `~/.codex/sk
 
 #### OpenCode
 
-Clone the entire repo into the OpenCode skills directory (`~/.opencode/skills/`):
+Clone this fork into the OpenCode skills directory (`~/.opencode/skills/`):
 
 ```sh
-git clone https://github.com/kepano/obsidian-skills.git ~/.opencode/skills/obsidian-skills
+git clone https://github.com/cmsdutra/obsidian-skills.git ~/.opencode/skills/obsidian-skills
 ```
 
 Do not copy only the inner `skills/` folder — clone the full repo so the directory structure is `~/.opencode/skills/obsidian-skills/skills/<skill-name>/SKILL.md`.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Obsidian Snippet Creator"
+  short_description: "Create Obsidian CSS snippets"
+  default_prompt: "Use $obsidian-snippet-creator to create a clean Obsidian CSS snippet for my vault."

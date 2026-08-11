@@ -1,6 +1,6 @@
 # Properties (Frontmatter) Reference
 
-Properties use YAML frontmatter at the start of a note:
+Properties use YAML frontmatter at the start of a note. Add frontmatter only at the top of the file, between `---` delimiters.
 
 ```yaml
 ---
@@ -33,6 +33,8 @@ due: 2024-02-01T14:30:00
 | List | `tags: [one, two]` or YAML list |
 | Links | `related: "[[Other Note]]"` |
 
+Quote wikilinks in YAML values unless the value is a plain list item that Obsidian already handles correctly.
+
 ## Default Properties
 
 - `tags` - Note tags (searchable, shown in graph view)
@@ -59,3 +61,15 @@ tags:
   - nested/tag2
 ---
 ```
+
+## YAML Pitfalls
+
+- Keep indentation consistent with spaces, not tabs.
+- Quote values containing `:`, `#`, `{}`, `[]`, leading `*`, or wikilinks when YAML parsing is ambiguous.
+- Store multi-value properties as YAML lists when the user expects Obsidian to treat them as multiple values.
+- Do not duplicate a property key in the same frontmatter block.
+
+## Canonical Docs
+
+- [Obsidian Properties](https://help.obsidian.md/properties)
+- [Obsidian Tags](https://help.obsidian.md/tags)

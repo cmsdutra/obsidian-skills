@@ -1,106 +1,61 @@
 ---
 name: obsidian-cli
-description: Interact with Obsidian vaults using the Obsidian CLI to read, create, search, and manage notes, tasks, properties, and more. Also supports plugin and theme development with commands to reload plugins, run JavaScript, capture errors, take screenshots, and inspect the DOM. Use when the user asks to interact with their Obsidian vault, manage notes, search vault content, perform vault operations from the command line, or develop and debug Obsidian plugins and themes.
+description: Interact with Obsidian vaults using the Obsidian CLI to read, create, search, and manage notes, tasks, properties, backlinks, and link-safe graph operations. Use when the user asks to search or inspect vault content, query Obsidian metadata, scrape properties/frontmatter, rename or move linked notes and attachments safely, manage tasks, inspect backlinks/outgoing links, or run common vault operations from the command line.
 ---
 
 # Obsidian CLI
 
-Use the `obsidian` CLI to interact with a running Obsidian instance. Requires Obsidian to be open.
+Use the `obsidian` CLI to interact with a running Obsidian app. Prefer it over raw filesystem operations whenever Obsidian's index, link resolution, properties, backlinks, or tasks matter.
 
-## Command reference
+## Core Workflow
 
-Run `obsidian help` to see all available commands. This is always up to date. Full docs: https://help.obsidian.md/cli
+1. Confirm whether the task touches the graph: note names, paths, aliases, headings used as link targets, embedded or linked attachments, backlinks, outgoing links, tasks, properties, or tags.
+2. If link integrity may be affected, load [link-safe-operations.md](references/link-safe-operations.md) before editing.
+3. For routine reads and searches, use the CLI first when the answer depends on Obsidian indexing or metadata. Use direct filesystem reads only for narrow content inspection with low link risk.
+4. For command syntax, run `obsidian help` or `obsidian help <command>` when available. Keep local examples as workflow reminders, not as a complete command reference.
+5. If `obsidian` cannot connect to Obsidian, load [troubleshooting.md](references/troubleshooting.md).
 
-## Syntax
+## Essential Syntax
 
-**Parameters** take a value with `=`. Quote values with spaces:
-
-```bash
-obsidian create name="My Note" content="Hello world"
-```
-
-**Flags** are boolean switches with no value:
-
-```bash
-obsidian create name="My Note" silent overwrite
-```
-
-For multiline content use `\n` for newline and `\t` for tab.
-
-## File targeting
-
-Many commands accept `file` or `path` to target a file. Without either, the active file is used.
-
-- `file=<name>` — resolves like a wikilink (name only, no path or extension needed)
-- `path=<path>` — exact path from vault root, e.g. `folder/note.md`
-
-## Vault targeting
-
-Commands target the most recently focused vault by default. Use `vault=<name>` as the first parameter to target a specific vault:
+- Parameters use `name=value`; quote values with spaces.
+- Flags are boolean switches with no value, such as `open`, `overwrite`, `total`, or `verbose`.
+- Multiline content can use `\n`; tabs can use `\t`.
+- If the current terminal directory is a vault, that vault is targeted by default. Otherwise the active vault is used.
+- To target another vault, put `vault=<name>` or `vault=<id>` before the command.
+- Use `file=<name>` for wikilink-style resolution by note name. Use `path=<vault-relative/path.md>` for an exact vault-relative path.
+- Add `--copy` to copy command output to the clipboard.
 
 ```bash
-obsidian vault="My Vault" search query="test"
+obsidian vault="My Vault" search query="meeting notes" limit=10
+obsidian read file="Project Plan"
+obsidian read path="Projects/Project Plan.md"
+obsidian create name="New Note" content="# Title\n\nBody" open
 ```
 
-## Common patterns
+## References to Load on Demand
 
-```bash
-obsidian read file="My Note"
-obsidian create name="New Note" content="# Hello" template="Template" silent
-obsidian append file="My Note" content="New line"
-obsidian search query="search term" limit=10
-obsidian daily:read
-obsidian daily:append content="- [ ] New task"
-obsidian property:set name="status" value="done" file="My Note"
-obsidian tasks daily todo
-obsidian tags sort=count counts
-obsidian backlinks file="My Note"
-```
+- [common-commands.md](references/common-commands.md): recurring command patterns for read, create, append/prepend, backlinks, links, tasks, tags, daily notes, files, and folders.
+- [search-operations.md](references/search-operations.md): common text search, context search, property scraping, folder-scoped metadata queries, and structured result extraction.
+- [link-safe-operations.md](references/link-safe-operations.md): required workflow for rename, move, delete, alias changes, heading target edits, referenced attachments, and backlink checks.
+- [properties-metadata.md](references/properties-metadata.md): properties, aliases, tags, YAML/frontmatter-adjacent CLI workflows, and metadata inspection.
+- [troubleshooting.md](references/troubleshooting.md): setup checks, official docs fallback, Linux/Flatpak socket issues, and the `unable to find Obsidian` workaround.
 
-Use `--copy` on any command to copy output to clipboard. Use `silent` to prevent files from opening. Use `total` on list commands to get a count.
+## Official Sources
 
-## Plugin development
+- Current CLI behavior: <https://obsidian.md/help/cli>
+- Obsidian Help for app behavior and Markdown syntax: <https://help.obsidian.md/>
 
-### Develop/test cycle
+When CLI syntax, command names, or app behavior may have changed, verify with `obsidian help` first. If local help is unavailable or ambiguous, check official Obsidian documentation before giving command-specific guidance.
 
-After making code changes to a plugin or theme, follow this workflow:
+## Maintenance Hook
 
-1. **Reload** the plugin to pick up changes:
-   ```bash
-   obsidian plugin:reload id=my-plugin
-   ```
-2. **Check for errors** — if errors appear, fix and repeat from step 1:
-   ```bash
-   obsidian dev:errors
-   ```
-3. **Verify visually** with a screenshot or DOM inspection:
-   ```bash
-   obsidian dev:screenshot path=screenshot.png
-   obsidian dev:dom selector=".workspace-leaf" text
-   ```
-4. **Check console output** for warnings or unexpected logs:
-   ```bash
-   obsidian dev:console level=error
-   ```
+When updating this skill's `SKILL.md` or any file under `references/`, append a concise entry to [docs/changelog.md](docs/changelog.md), in english (US). Create the file if missing.
 
-### Additional developer commands
+Use newest-first entries with:
 
-Run JavaScript in the app context:
+- date and short title
+- changed files or areas
+- reason for the change
+- validation performed
 
-```bash
-obsidian eval code="app.vault.getFiles().length"
-```
-
-Inspect CSS values:
-
-```bash
-obsidian dev:css selector=".workspace-leaf" prop=background-color
-```
-
-Toggle mobile emulation:
-
-```bash
-obsidian dev:mobile on
-```
-
-Run `obsidian help` to see additional developer commands including CDP and debugger controls.
+Do not log ordinary user-created notes (`.md` files) outputs; log only changes to the skill instructions, references, scripts, assets, or validation policy.
