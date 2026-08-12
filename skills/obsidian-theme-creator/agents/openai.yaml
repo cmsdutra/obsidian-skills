@@ -1,0 +1,4 @@
+interface:
+  display_name: "Obsidian Theme Creator"
+  short_description: "Create and update Obsidian themes"
+  default_prompt: "Use $obsidian-theme-creator to create or update an Obsidian theme for my vault."

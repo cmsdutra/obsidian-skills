@@ -1,66 +1,154 @@
-# Obsidian Skills for Codex
+# Obsidian Skills
 
-Agent Skills for use with Obsidian, packaged as a Codex plugin.
+Skills para agentes compatíveis com o padrão [Agent Skills](https://agentskills.io/specification), focadas em criação, edição, manutenção e automação de vaults do Obsidian.
 
-This repository is Caio Dutra's fork of [`kepano/obsidian-skills`](https://github.com/kepano/obsidian-skills.git). The upstream project provides Obsidian-focused Agent Skills for multiple skills-compatible agents; this fork adapts that work for local Codex plugin usage.
+Este repositório é um fork de [`kepano/obsidian-skills`](https://github.com/kepano/obsidian-skills.git), adaptado para uso local como plugin do Codex e ampliado com workflows para CLI, snippets, temas, plugins e saneamento de vault.
 
-These skills follow the [Agent Skills specification](https://agentskills.io/specification) so they can be used by any skills-compatible agent, including Claude Code, Codex, and Open Code.
+## Composição
 
-## Installation
-
-### Codex Plugin
-
-This fork includes a Codex plugin manifest at `.codex-plugin/plugin.json` and exposes the skills in `skills/`.
-
-### Original Marketplace
-
+```text
+.
+├── .codex-plugin/plugin.json
+├── LICENSE
+├── README.md
+└── skills/
+    ├── defuddle/
+    ├── obsidian-bases/
+    ├── obsidian-canvas/
+    ├── obsidian-cli/
+    ├── obsidian-markdown/
+    ├── obsidian-plugin-creator/
+    ├── obsidian-snippet-creator/
+    ├── obsidian-theme-creator/
+    └── obsidian-vault-sanitizer/
 ```
-/plugin marketplace add kepano/obsidian-skills
-/plugin install obsidian@obsidian-skills
+
+Cada pasta em `skills/` contém um `SKILL.md` e, quando necessário, recursos auxiliares como `references/`, `scripts/`, `agents/openai.yaml` e `docs/changelog.md`.
+
+## Instalação
+
+### Codex
+
+Opção 1: usar como plugin local.
+
+1. Clone este repositório:
+
+```sh
+git clone https://github.com/cmsdutra/obsidian-skills.git
 ```
 
-These commands refer to the original upstream marketplace package.
+2. Instale ou aponte o Codex para este repositório como plugin local. O manifesto está em:
+
+```text
+.codex-plugin/plugin.json
+```
+
+O manifesto expõe todas as skills por meio de:
+
+```json
+"skills": "./skills/"
+```
+
+Opção 2: copiar as skills diretamente.
+
+```sh
+mkdir -p ~/.codex/skills
+cp -R skills/* ~/.codex/skills/
+```
+
+Reinicie o Codex depois de instalar ou atualizar as skills.
 
 ### npx skills
 
-```
+Via SSH:
+
+```sh
 npx skills add git@github.com:cmsdutra/obsidian-skills.git
 ```
 
-Instead of ssh, if you prefer to use https:
+Via HTTPS:
 
-```
+```sh
 npx skills add https://github.com/cmsdutra/obsidian-skills
 ```
 
-### Manually
+### Claude Code
 
-#### Claude Code
+Copie o conteúdo deste repositório para a pasta de skills usada pelo Claude Code no seu projeto ou vault. Se estiver trabalhando dentro de um vault Obsidian, uma opção comum é manter as skills sob uma pasta de configuração do agente no próprio workspace.
 
-Add the contents of this repo to a `/.claude` folder in the root of your Obsidian vault (or whichever folder you're using with Claude Code). See more in the [official Claude Skills documentation](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview).
+Consulte a documentação oficial do Claude Skills para o local exato esperado pela sua instalação.
 
-#### Codex
+### OpenCode
 
-Copy the `skills/` directory into your Codex skills path (typically `~/.codex/skills`). See the [Agent Skills specification](https://agentskills.io/specification) for the standard skill format.
-
-#### OpenCode
-
-Clone this fork into the OpenCode skills directory (`~/.opencode/skills/`):
+Clone o repositório completo dentro do diretório de skills do OpenCode:
 
 ```sh
 git clone https://github.com/cmsdutra/obsidian-skills.git ~/.opencode/skills/obsidian-skills
 ```
 
-Do not copy only the inner `skills/` folder — clone the full repo so the directory structure is `~/.opencode/skills/obsidian-skills/skills/<skill-name>/SKILL.md`.
+Não copie apenas a pasta interna `skills/`. A estrutura esperada fica assim:
 
-OpenCode auto-discovers all `SKILL.md` files under `~/.opencode/skills/`. No changes to `opencode.json` or any config file are needed. Skills become available after restarting OpenCode.
+```text
+~/.opencode/skills/obsidian-skills/skills/<skill-name>/SKILL.md
+```
 
-## Skills
+Reinicie o OpenCode depois da instalação.
 
-| Skill | Description |
-|-------|-------------|
-| [obsidian-markdown](skills/obsidian-markdown) | Create and edit [Obsidian Flavored Markdown](https://help.obsidian.md/obsidian-flavored-markdown) (`.md`) with wikilinks, embeds, callouts, properties, and other Obsidian-specific syntax |
-| [obsidian-bases](skills/obsidian-bases) | Create and edit [Obsidian Bases](https://help.obsidian.md/bases/syntax) (`.base`) with views, filters, formulas, and summaries |
-| [json-canvas](skills/json-canvas) | Create and edit [JSON Canvas](https://jsoncanvas.org/) files (`.canvas`) with nodes, edges, groups, and connections |
-| [obsidian-cli](skills/obsidian-cli) | Interact with Obsidian vaults via the [Obsidian CLI](https://help.obsidian.md/cli) including plugin and theme development |
-| [defuddle](skills/defuddle) | Extract clean markdown from web pages using [Defuddle](https://github.com/kepano/defuddle), removing clutter to save tokens |
+### Marketplace original
+
+O upstream original pode ser instalado pelo marketplace do pacote de Kepano:
+
+```text
+/plugin marketplace add kepano/obsidian-skills
+/plugin install obsidian@obsidian-skills
+```
+
+Esses comandos se referem ao pacote original, não necessariamente a este fork.
+
+## Skills incluídas
+
+| Skill | Resumo |
+|-------|--------|
+| [defuddle](skills/defuddle) | Extrai Markdown limpo de páginas web com o Defuddle CLI, removendo navegação, anúncios e ruído para reduzir tokens ao analisar URLs. |
+| [obsidian-bases](skills/obsidian-bases) | Cria, edita e valida Obsidian Bases em arquivos `.base` ou blocos Markdown `base`, com views, filtros, fórmulas e summaries. |
+| [obsidian-canvas](skills/obsidian-canvas) | Cria e edita arquivos `.canvas` no formato JSON Canvas usado pelo Obsidian, incluindo nodes, edges, grupos, cards de texto, links e arquivos. |
+| [obsidian-cli](skills/obsidian-cli) | Usa a Obsidian CLI para ler, buscar, criar, mover e gerenciar notas, tarefas, propriedades, backlinks e operações link-safe em vaults. |
+| [obsidian-markdown](skills/obsidian-markdown) | Cria e edita Obsidian Flavored Markdown com wikilinks, embeds, callouts, frontmatter, tags, comentários, blocos e propriedades. |
+| [obsidian-plugin-creator](skills/obsidian-plugin-creator) | Ajuda a criar, modificar, depurar e validar plugins locais ou comunitários do Obsidian, incluindo `manifest.json`, TypeScript, build e testes. |
+| [obsidian-snippet-creator](skills/obsidian-snippet-creator) | Cria e salva snippets CSS em `.obsidian/snippets`, usando variáveis e padrões de estilo do Obsidian. |
+| [obsidian-theme-creator](skills/obsidian-theme-creator) | Cria, refatora, depura e valida temas completos do Obsidian com `theme.css`, `manifest.json`, modos claro/escuro e critérios de publicação. |
+| [obsidian-vault-sanitizer](skills/obsidian-vault-sanitizer) | Audita e corrige problemas de saneamento do vault, como links quebrados, anexos órfãos, nomes genéricos tipo `Sem título 1.md`, duplicatas e frontmatter inválido. |
+
+## Como usar
+
+Depois de instalada, invoque a skill explicitamente quando quiser forçar um workflow:
+
+```text
+Use $obsidian-vault-sanitizer para auditar este vault e propor correções.
+Use $obsidian-markdown para criar uma nota com callouts e propriedades.
+Use $obsidian-plugin-creator para criar um plugin local do Obsidian.
+```
+
+Agentes que suportam invocação implícita também podem carregar a skill automaticamente quando o pedido mencionar arquivos, tarefas ou conceitos cobertos pela descrição da skill.
+
+## Dependências úteis
+
+Algumas skills funcionam melhor com ferramentas externas instaladas:
+
+| Ferramenta | Usada por | Observação |
+|------------|-----------|------------|
+| `obsidian` CLI | `obsidian-cli`, operações link-safe e validações em runtime | Necessária quando o agente precisa consultar o índice vivo do Obsidian ou mover/renomear preservando links. |
+| `defuddle` CLI | `defuddle` | Instale com `npm install -g defuddle` se ainda não estiver disponível. |
+| Python 3 | scripts de validação e saneamento | Usado por scripts como `obsidian-vault-sanitizer/scripts/audit_vault.py`. |
+| Node.js/npm | criação de plugins, temas e snippets | Necessário para builds, linters e ferramentas do ecossistema Obsidian quando presentes. |
+
+## Manutenção
+
+- Cada skill deve manter seu próprio `SKILL.md` enxuto e colocar detalhes adicionais em `references/`.
+- Scripts reutilizáveis devem ficar em `scripts/` e ser validados após alterações.
+- Mudanças em instruções, scripts, referências ou política de validação devem ser registradas no `docs/changelog.md` da respectiva skill quando esse arquivo existir.
+- Evite editar diretamente vaults Obsidian quando a operação afetar links, backlinks, aliases, anexos ou headings; prefira workflows link-safe via Obsidian CLI quando disponíveis.
+
+## Licença
+
+Este projeto segue a licença em [LICENSE](LICENSE).

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Obsidian Vault Sanitizer"
+  short_description: "Audit and clean Obsidian vault health issues"
+  default_prompt: "Use $obsidian-vault-sanitizer to audit this Obsidian vault for broken links, orphan attachments, generic filenames like Sem título 1.md, and cleanup risks."
