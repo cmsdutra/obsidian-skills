@@ -1,8 +1,6 @@
 ---
 name: obsidian-bases
 description: Create and edit Obsidian Bases as .base files or inline Markdown base code blocks, with views, filters, formulas, summaries, and YAML validation. Use when working with database-like note views, table/card/list/map views, filters, calculated properties, embedded Bases, or Bases troubleshooting in Obsidian.
-metadata:
-  info: this skill was adapted from Kaparty's obsidian skills <https://github.com/kepano/obsidian-skills.git>
 ---
 
 # Obsidian Bases
