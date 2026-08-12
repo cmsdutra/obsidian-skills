@@ -24,19 +24,6 @@ Create and edit valid Obsidian Flavored Markdown. This skill covers Obsidian-spe
 - [callouts.md](references/callouts.md): callout types, aliases, custom titles, nested and foldable callouts.
 - [pitfalls.md](references/pitfalls.md): recurring mistakes with wikilinks, aliases, embeds, block IDs, foldable callouts, tags, and YAML.
 
-## Maintenance Hook
-
-When updating this skill's `SKILL.md` or any file under `references/`, append a concise entry to [docs/changelog.md](docs/changelog.md), in english (US). Create the file if missing.
-
-Use newest-first entries with:
-
-- date and short title
-- changed files or areas
-- reason for the change
-- validation performed
-
-Do not log ordinary user-created notes (`.md` files) outputs; log only changes to the skill instructions, references, scripts, assets, or validation policy.
-
 ## Fast Syntax Reminders
 
 - Internal note: `[[Note]]`

@@ -46,16 +46,3 @@ obsidian create name="New Note" content="# Title\n\nBody" open
 - Obsidian Help for app behavior and Markdown syntax: <https://help.obsidian.md/>
 
 When CLI syntax, command names, or app behavior may have changed, verify with `obsidian help` first. If local help is unavailable or ambiguous, check official Obsidian documentation before giving command-specific guidance.
-
-## Maintenance Hook
-
-When updating this skill's `SKILL.md` or any file under `references/`, append a concise entry to [docs/changelog.md](docs/changelog.md), in english (US). Create the file if missing.
-
-Use newest-first entries with:
-
-- date and short title
-- changed files or areas
-- reason for the change
-- validation performed
-
-Do not log ordinary user-created notes (`.md` files) outputs; log only changes to the skill instructions, references, scripts, assets, or validation policy.

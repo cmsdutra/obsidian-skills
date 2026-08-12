@@ -2,7 +2,7 @@
 
 Skills para agentes compatíveis com o padrão [Agent Skills](https://agentskills.io/specification), focadas em criação, edição, manutenção e automação de vaults do Obsidian.
 
-Este repositório é um fork de [`kepano/obsidian-skills`](https://github.com/kepano/obsidian-skills.git), adaptado para uso local como plugin do Codex e ampliado com workflows para CLI, snippets, temas, plugins e saneamento de vault.
+Este repositório é um fork de [`kepano/obsidian-skills`](https://github.com/kepano/obsidian-skills.git), com otimização do workflow das skills de bases, canvas, fravored markdown e cli, e ampliado com workflows para snippets, temas, plugins e saneamento de vault.
 
 ## Composição
 
@@ -25,8 +25,6 @@ Este repositório é um fork de [`kepano/obsidian-skills`](https://github.com/ke
     ├── obsidian-theme-creator/
     └── obsidian-vault-sanitizer/
 ```
-
-Cada pasta em `skills/` contém um `SKILL.md` e, quando necessário, recursos auxiliares como `references/`, `scripts/`, `agents/openai.yaml` e `docs/changelog.md`.
 
 ## Instalação
 
@@ -147,7 +145,7 @@ O upstream original pode ser instalado pelo marketplace do pacote de Kepano:
 /plugin install obsidian@obsidian-skills
 ```
 
-Esses comandos se referem ao pacote original, não necessariamente a este fork.
+⚠️ **Esses comandos se referem ao pacote original, não a este fork.**
 
 ## Skills incluídas
 

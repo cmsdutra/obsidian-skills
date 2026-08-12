@@ -88,16 +88,3 @@ Do not rename generic filenames automatically from note contents unless the user
 
 - [references/remediation.md](references/remediation.md): safe correction patterns for broken links, orphan attachments, generic note filenames, duplicate note names, empty notes, and frontmatter problems.
 - [references/audit-rules.md](references/audit-rules.md): details about link resolution assumptions, limitations, and manual verification points.
-
-## Maintenance Hook
-
-When updating this skill's `SKILL.md`, scripts, references, assets, or validation policy, append a concise entry to [docs/changelog.md](docs/changelog.md), in english (US). Create the file if missing.
-
-Use newest-first entries with:
-
-- date and short title
-- changed files or areas
-- reason for the change
-- validation performed
-
-Do not log ordinary vault audit outputs; log only changes to the skill itself.

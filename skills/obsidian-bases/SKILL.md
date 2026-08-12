@@ -34,19 +34,6 @@ This skill was originally derived from Kepano's `obsidian-skills` repository: ht
 - Realistic `.base` examples: read [references/examples.md](references/examples.md).
 - Recurrent failure modes and YAML quoting traps: read [references/pitfalls.md](references/pitfalls.md).
 
-## Maintenance Hook
-
-When updating this skill's `SKILL.md` or any file under `references/`, append a concise entry to [docs/changelog.md](docs/changelog.md). Create the file if missing.
-
-Use newest-first entries with:
-
-- date and short title
-- changed files or areas
-- reason for the change
-- validation performed
-
-Do not log ordinary user-created `.base` outputs; log only changes to the skill instructions, references, scripts, assets, or validation policy.
-
 ## Canonical Docs
 
 Use these official pages when in doubt or when this skill may be stale:
