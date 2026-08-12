@@ -1,0 +1,15 @@
+{
+  "name": "obsidian-skills",
+  "owner": {
+    "name": "Caio Dutra",
+    "url": "https://github.com/cmsdutra"
+  },
+  "description": "Skills for Obsidian notes, bases, canvas, snippets, themes, plugins, vault cleanup, and CLI workflows.",
+  "plugins": [
+    {
+      "name": "obsidian-skills",
+      "source": "./",
+      "description": "Skills for Obsidian notes, bases, canvas, snippets, themes, plugins, vault cleanup, and CLI workflows."
+    }
+  ]
+}

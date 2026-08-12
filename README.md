@@ -8,6 +8,9 @@ Este repositório é um fork de [`kepano/obsidian-skills`](https://github.com/ke
 
 ```text
 .
+├── .claude-plugin/
+│   ├── plugin.json
+│   └── marketplace.json
 ├── .codex-plugin/plugin.json
 ├── LICENSE
 ├── README.md
@@ -74,9 +77,50 @@ npx skills add https://github.com/cmsdutra/obsidian-skills
 
 ### Claude Code
 
-Copie o conteúdo deste repositório para a pasta de skills usada pelo Claude Code no seu projeto ou vault. Se estiver trabalhando dentro de um vault Obsidian, uma opção comum é manter as skills sob uma pasta de configuração do agente no próprio workspace.
+Este repositório também é um marketplace de plugins no formato usado pelo Claude Code, através dos manifestos em:
 
-Consulte a documentação oficial do Claude Skills para o local exato esperado pela sua instalação.
+```text
+.claude-plugin/plugin.json
+.claude-plugin/marketplace.json
+```
+
+O manifesto do plugin expõe todas as skills por meio de:
+
+```json
+"skills": "./skills/"
+```
+
+Instale via marketplace apontando para o repositório remoto:
+
+```text
+/plugin marketplace add cmsdutra/obsidian-skills
+/plugin install obsidian-skills@obsidian-skills
+```
+
+Ou clone localmente e aponte para o caminho:
+
+```sh
+git clone https://github.com/cmsdutra/obsidian-skills.git
+```
+
+```text
+/plugin marketplace add ./obsidian-skills
+/plugin install obsidian-skills@obsidian-skills
+```
+
+Alternativa manual: copie o conteúdo deste repositório para a pasta de skills usada pelo Claude Code no seu projeto ou vault. Consulte a documentação oficial do Claude Skills para o local exato esperado pela sua instalação.
+
+### Cowork
+
+No [Cowork](https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork), plugins são instalados pela interface, não por comandos:
+
+1. Abra a aba **Cowork** e depois **Customize**, na barra lateral.
+2. Vá na aba **Plugins**.
+3. No bloco "Personal plugins", clique em **+** → **Add marketplace**.
+4. Escolha adicionar por repositório GitHub / URL git e informe `cmsdutra/obsidian-skills` (ou a URL `https://github.com/cmsdutra/obsidian-skills`).
+5. Com o marketplace adicionado, clique em **Browse plugins** e instale o plugin `obsidian-skills`.
+
+O fluxo de "Add marketplace" via repositório GitHub/URL git usa o mesmo `.claude-plugin/marketplace.json` deste repositório, então nenhum arquivo adicional é necessário. Veja mais detalhes em [Use plugins in Cowork](https://support.claude.com/en/articles/13837440-use-plugins-in-cowork).
 
 ### OpenCode
 

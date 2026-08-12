@@ -1,0 +1,21 @@
+{
+  "name": "obsidian-skills",
+  "displayName": "Obsidian Skills",
+  "version": "0.1.0",
+  "description": "Caio Dutra's fork of kepano/obsidian-skills: skills for creating, editing, validating, cleaning, and automating Obsidian vault content, themes, and plugins.",
+  "author": {
+    "name": "Caio Dutra",
+    "url": "https://github.com/cmsdutra"
+  },
+  "homepage": "https://github.com/cmsdutra/obsidian-skills",
+  "repository": "https://github.com/cmsdutra/obsidian-skills",
+  "license": "MIT",
+  "keywords": [
+    "obsidian",
+    "skills",
+    "markdown",
+    "canvas",
+    "notes"
+  ],
+  "skills": "./skills/"
+}
